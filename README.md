@@ -24,7 +24,7 @@ class Widget extends CacheableWidget
      */
     public function run()
     {
-        // Dom some heavy stuff.
+        // Do some heavy stuff.
         $this->doSomeHeavyStuff();
         $this->doSomeOtherHeavyStuff();
 
