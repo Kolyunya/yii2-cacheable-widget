@@ -1,6 +1,6 @@
 <?php
 
-namespace common\components;
+namespace Kolyunya\yii2\widgets;
 
 use Yii;
 use yii\base\Exception;
@@ -9,7 +9,7 @@ use yii\caching\Cache;
 use yii\caching\Dependency;
 use yii\widgets\FragmentCache;
 
-abstract class CacheableWidget extends Widget
+class CacheableWidget extends Widget
 {
     /**
      * Widget cache.
