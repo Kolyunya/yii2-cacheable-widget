@@ -4,8 +4,9 @@
 A cacheable widget behaving very much like `yii\filters\PageCache`.
 
 ## Usage
-~~~php
-class Widget extends CacheableWidget
+### Define a custom cacheable widget 
+```php
+class MyCacheableWidget extends CacheableWidget
 {
     /**
      *
@@ -46,4 +47,9 @@ class Widget extends CacheableWidget
         ];
     }
 }
-~~~
+```
+
+### Render it in views
+```php
+<?= MyCacheableWidget::widget(); ?>
+```
