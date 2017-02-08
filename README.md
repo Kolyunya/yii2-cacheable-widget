@@ -13,18 +13,6 @@ Defining a custom cacheable widget is quite simple. Just extend your widget from
 class MySimpleCacheableWidget extends CacheableWidget
 {
     /**
-     *
-     * @var Foo
-     */
-    public $foo;
-
-    /**
-     *
-     * @var Bar
-     */
-    public $bar;
-
-    /**
      * @inheritdoc
      */
     public function run()
@@ -114,5 +102,8 @@ class MyCacheableWidget extends CacheableWidget
 
 ### Render the widget in views
 ```php
-<?= MyCacheableWidget::widget(); ?>
+<?= MyCacheableWidget::widget([
+    'foo' => $foo,
+    'bar' => $bar,
+]); ?>
 ```
