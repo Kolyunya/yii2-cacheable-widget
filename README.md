@@ -1,10 +1,14 @@
 # Yii2 cacheable widget
 
 ## Description
-A cacheable widget behaving very much like `yii\filters\PageCache`.
+A cacheable widget for Yii2 framework. Caches an entire rendered widget as a single cache item. Allows you to configure caching once in a widget class and render it in many views leaving them clean from caching business logic, ensuring DRY and KISS principles. 
 
 ## Usage
 ### Define a custom cacheable widget 
+Defining a custom cacheable widget is quite simple. Just extend your widget from `Kolyunya\yii2\widgets\CacheableWidget` and you are good to go. You widget will be cached by a default cache (`cache` application component) for a default duration (for one minute) without any dependencies and without any cache key variations.
+
+In more complex scenarios you can override some protected methods of the base cacheable widget to configure more complex caching stategies.
+
 ```php
 class MyCacheableWidget extends CacheableWidget
 {
@@ -25,15 +29,39 @@ class MyCacheableWidget extends CacheableWidget
      */
     public function run()
     {
-        // Do some heavy stuff.
-        $this->doSomeHeavyStuff();
-        $this->doSomeOtherHeavyStuff();
+        // Do some resource-expensive work.
+        $this->doSomeExpensiveWork();
+        $this->doSomeMoreExpensiveWork();
 
         // Render some heavy templates.
-        return $this->render('widget',
+        return $this->render('my-cacheable-widget',
             'foo' => $this->foo,
             'bar' => $this->bar,
         ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getCacheComponent()
+    {
+        return 'myCustomCache';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getCacheDuration()
+    {
+        return 60 * 60;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected function getCacheDependency()
+    {
+        return new MyCustomCacheDependency();
     }
 
     /**
