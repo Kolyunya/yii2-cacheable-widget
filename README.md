@@ -112,7 +112,7 @@ class MyCacheableWidget extends CacheableWidget
 }
 ```
 
-### Render it in views
+### Render the widget in views
 ```php
 <?= MyCacheableWidget::widget(); ?>
 ```
